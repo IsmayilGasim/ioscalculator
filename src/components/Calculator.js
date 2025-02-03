@@ -13,15 +13,18 @@ function Calculator() {
     const text = e.target.innerText;
     if (text == "AC") {
       setInput("0");
-    } else if (text == "+") {
+    } else if (text == "+" || text == "-" || text == "*" || text == "/") {
       setOperator(text);
       setResult(input);
       setInput("0");
     } else if (text == "=") {
+      
       setResult((pre) => {
-        const result = Operation({operator:operator, numberOne:Number(pre), numberTwo:Number(input)});
-        console.log('resultttt', result)
-        return setInput(result);
+        if(pre && input){
+          const result = Operation({operator:operator, numberOne:Number(pre), numberTwo:Number(input)});
+          console.log('resultttt', result)
+          return setInput(result);
+        }
       });
     } else {
       setInput((previos) => {
