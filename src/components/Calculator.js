@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "../styles/Calculator.css";
 import ButtonPanel from "./ButtonPanel";
 import Input from "./Input";
-import Operation from "../logic/Operation";
+import Operation from "../logic/Calculation";
+import ReverseSign from "../logic/ReverseSign";
 
 function Calculator() {
   const [input, setInput] = useState("0");
@@ -13,7 +14,7 @@ function Calculator() {
     const text = e.target.innerText;
     if (text == "AC") {
       setInput("0");
-    } else if (text == "+" || text == "-" || text == "*" || text == "/") {
+    } else if (["+", "-", "*", "/"].includes(text)) {
       setOperator(text);
       setResult(input);
       setInput("0");
@@ -26,6 +27,8 @@ function Calculator() {
           return setInput(result);
         }
       });
+    }else if(text == "+/-"){
+      setInput(ReverseSign(input));
     } else {
       setInput((previos) => {
         return (previos != 0 ? previos : "") + text;

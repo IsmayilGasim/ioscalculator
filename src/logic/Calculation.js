@@ -1,9 +1,11 @@
-import React from 'react'
+export default function Calculation({ operator, numberOne, numberTwo }) {
 
-function Calculation() {
-  return (
-    <div>Calculation</div>
-  )
+  const operations = {
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+    "*": (a, b) => a * b,
+    "/": (a, b) => b !== 0 ? a / b : "Sıfıra bölmək olmaz"
+};
+ 
+ return operations[operator](numberOne,numberTwo);
 }
-
-export default Calculation

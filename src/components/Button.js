@@ -1,7 +1,7 @@
-import React from "react";
+import { memo } from "react";
 import "../styles/Button.css";
 function Button(props) {
-  console.log(props);
+  console.log("props: ",props);
   const className =
     props.btnType == "number"
       ? "numberBtn"
@@ -16,4 +16,4 @@ function Button(props) {
   );
 }
 
-export default Button;
+export default memo(Button);

@@ -1,9 +1,10 @@
-import React from "react";
 import Button from "./Button";
+import { memo } from "react";
 import { PiCalculatorThin } from "react-icons/pi";
 
 import "../styles/ButtonPanel.css";
 function ButtonPanel(props) {
+  console.log("BurttonPanel")
   return (
     <div className="btnPanel">
       <div className="horizontal">
@@ -11,6 +12,7 @@ function ButtonPanel(props) {
           btnType="action"
           text="AC"
           onClickHandler={props.onClickHandler}
+          key="AC"
         />
         <Button
           btnType="action"
@@ -120,4 +122,4 @@ function ButtonPanel(props) {
   );
 }
 
-export default ButtonPanel;
+export default memo(ButtonPanel);
