@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import "../styles/Calculator.css";
 import ButtonPanel from "./ButtonPanel";
 import Input from "./Input";
 import Operation from "../logic/Calculation";
 import ReverseSign from "../logic/ReverseSign";
 
+export const HandlerContext = createContext(null);
+
 function Calculator() {
   const [input, setInput] = useState("0");
   const [operator, setOperator] = useState("");
   const [result, setResult] = useState("");
+
+
   console.log("res:", result);
   const onClickHandler = (e) => {
     const text = e.target.innerText;
@@ -36,10 +40,13 @@ function Calculator() {
     }
   };
 
+
   return (
     <div className="calculator">
       <Input text={input} />
-      <ButtonPanel onClickHandler={onClickHandler} />
+      <HandlerContext.Provider value={onClickHandler}>
+        <ButtonPanel />
+      </HandlerContext.Provider>
     </div>
   );
 }
